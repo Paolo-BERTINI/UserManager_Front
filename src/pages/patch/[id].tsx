@@ -26,13 +26,13 @@ export default function Patch() {
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h1>Modifier l'Utilisateur</h1>
       <input value={user.first_name} onChange={e => setUser({ ...user, first_name: e.target.value })} />
       <input value={user.last_name} onChange={e => setUser({ ...user, last_name: e.target.value })} />
       <input value={user.mail} onChange={e => setUser({ ...user, mail: e.target.value })} />
       <input value={user.password} onChange={e => setUser({ ...user, password: e.target.value })} />
       <button type="submit">Valider</button>
-    </div>
+    </form>
   );
 }

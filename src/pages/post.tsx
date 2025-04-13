@@ -16,13 +16,13 @@ export default function Post() {
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <h1>Ajouter un utilisateur</h1>
       <input placeholder="Prénom" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
       <input placeholder="Nom" value={lastName} onChange={(e) => setLastName(e.target.value)} />
       <input placeholder="Email" value={mail} onChange={(e) => setMail(e.target.value)} />
       <input placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button type="submit">Nouvel utilisateur</button>
-    </div>
+    </form>
   );
 }
