@@ -20,7 +20,7 @@ export default function UsersPage() {
           <li key={user.id}>
             <p>ID : {user.id}</p>
             <p>Prénom : {user.first_name}</p>
-            <p>Nom : {user.first_name}</p>
+            <p>Nom : {user.last_name}</p>
             <p>Email : {user.mail}</p>
           </li>
         ))}
