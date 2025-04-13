@@ -3,7 +3,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-export default function UserByIdPage() {
+export default function Getid() {
   const router = useRouter();
   const { id } = router.query;
   const [user, setUser] = useState<any>(null);

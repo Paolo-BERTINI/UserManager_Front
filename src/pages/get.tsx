@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 
-export default function UsersPage() {
+export default function Get() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/users')
+    fetch(`http://localhost:3001/users`)
       .then(res => res.json())
       .then(data => setUsers(data))
       .catch(err => console.error('Erreur de chargement des utilisateurs:', err));

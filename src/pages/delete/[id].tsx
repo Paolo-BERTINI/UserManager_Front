@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/router';
 
-export default function DeleteUser() {
+export default function Delete() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -14,7 +14,7 @@ export default function DeleteUser() {
 
   return (
     <div>
-      <p>Supprimer l’utilisateur ?</p>
+      <p>Supprimer l'utilisateur ?</p>
       <button onClick={handleDelete}>Oui</button>
     </div>
   );

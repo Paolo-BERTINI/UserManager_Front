@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function PostUserPage() {
+export default function Post() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [mail, setMail] = useState('');
@@ -8,7 +8,7 @@ export default function PostUserPage() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    await fetch('http://localhost:3001/users', {
+    await fetch(`http://localhost:3001/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ first_name: firstName, last_name: lastName, mail, password }),
