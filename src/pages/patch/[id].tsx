@@ -1,37 +1,43 @@
 'use client';
 
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Patch() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const [user, setUser] = useState({ first_name: '', last_name: '', mail: '', password: '' });
+  const { query } = useRouter();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [mail, setMail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
-    if (!id) return;
-    fetch(`http://localhost:3001/users/${id}`)
+    if (!query.id) return;
+    fetch(`http://localhost:3001/users/${query.id}`)
       .then(res => res.json())
-      .then(data => setUser(data));
-  }, [id]);
+      .then(d => {
+        setFirstName(d.first_name);
+        setLastName(d.last_name);
+        setMail(d.mail);
+        setPassword(d.password);
+      });
+  }, [query.id]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    await fetch(`http://localhost:3001/users/${id}`, {
+    await fetch(`http://localhost:3001/users/${query.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user),
+      body: JSON.stringify({ first_name: firstName, last_name: lastName, mail, password }),
     });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Modifier l'Utilisateur</h1>
-      <input value={user.first_name} onChange={e => setUser({ ...user, first_name: e.target.value })} />
-      <input value={user.last_name} onChange={e => setUser({ ...user, last_name: e.target.value })} />
-      <input value={user.mail} onChange={e => setUser({ ...user, mail: e.target.value })} />
-      <input value={user.password} onChange={e => setUser({ ...user, password: e.target.value })} />
+      <h1>Modifier l'utilisateur</h1>
+      <input placeholder="Prénom" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+      <input placeholder="Nom" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      <input placeholder="Email" value={mail} onChange={(e) => setMail(e.target.value)} />
+      <input placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button type="submit">Valider</button>
     </form>
   );
